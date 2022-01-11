@@ -1,3 +1,4 @@
+
 Seems like there is a bug with with the following scenario:
 - enter fullscreen using the new `WindowInsetsController`
 - ensure fullscreen restore after various other interactions that steals focus and might show system bar using an `OnApplyWindowInsetsListener`
@@ -14,7 +15,7 @@ The bug being a race between these methods with the insetsListener receiving the
 ```
     window.decorView.setOnApplyWindowInsetsListener { _, insets ->
         if (insets.isVisible(statusBars())) {
-            setAsImmersive()
+            setAsImmersive() // (the code from just above)
         }
         insets
     }
